@@ -1,5 +1,6 @@
 import os, time, pygame
 from states.title import Title
+from util import load_save, reset_keys
 
 # initiate the pygame window
 class Game():
@@ -23,6 +24,9 @@ class Game():
         self.state_stack = []
         self.load_assets()
         self.load_states()
+        
+    # Load the current save file
+    save = load_save()
 
     def game_loop(self):
         while self.playing:
