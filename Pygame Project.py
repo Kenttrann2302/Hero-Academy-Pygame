@@ -1,6 +1,7 @@
 import os, time, pygame
 from states.title import Title
 from util import load_save, reset_keys
+from controls import Controls_Handler
 
 # initiate the pygame window
 class Game():
@@ -27,6 +28,7 @@ class Game():
         
     # Load the current save file
     save = load_save()
+    control_handler = Controls_Handler(save)
 
     def game_loop(self):
         while self.playing:
