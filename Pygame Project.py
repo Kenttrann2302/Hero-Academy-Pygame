@@ -2,6 +2,7 @@ import os, time, pygame
 from states.title import Title
 from util import load_save, reset_keys
 from controls import Controls_Handler
+from camera import *
 
 # initiate the pygame window
 class Game():
