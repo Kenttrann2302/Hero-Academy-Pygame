@@ -65,11 +65,42 @@ class Game():
                     self.actions["action2"] = True
                 if event.key == pygame.K_RETURN:
                     self.actions["start"] = True
+                
+                if event.key == control_handler.controls['Left']:
+                    actions['Left'] = True
+                if event.key == control_handler.controls['Right']:
+                    actions['Right'] = True
+                if event.key == control_handler.controls['Up']:
+                    actions['Up'] = True
+                if event.key == control_handler.controls['Down']:
+                    actions['Down'] = True
+                if event.key == control_handler.controls['Start']:
+                    actions['Start'] = True
+                if event.key == control_handler.contrils['Action1']:
+                    actions['Action1'] = True
+             
+             if event.type == pygame.KEYUP:
+                    if event.key == control_handler.controls['Left']:
+                        actions['Left'] = False
+                    if event.key == control_handler.controls['Right']:
+                        actions['Right'] = False
+                    if event.key == control_handler.controls['Up']:
+                        actions['Up'] = False
+                    if event.key == control_handler.controls['Down']:
+                        actions['Down'] = False
+                    if event.key == control_handler.controls['Start']:
+                        actions['Start'] = False
+                    if event.key == control_handler.contols['Action1']:
+                        actions['Action1'] = False
 
     def update(self):
         self.state_stack[-1].update(self.dt, self.actions)
+        control_handler.update(actions)
+        pygame.display.update()
 
     def render(self):
+        canvas.fill(135, 206, 235)
+        control_handler.render(canvas)
         self.state_stack[-1].render(self.game_canvas)
         self.screen.blit(pygame.transform.scale(self.game_canvas, (self.SCREEN_WIDTH, self.SCREEN_HEIGHT)), (0, 0))
         pygame.display.flip()
@@ -102,6 +133,7 @@ class Game():
     def reset_keys(self):
         for action in self.actions:
             self.actions[action] = False
+        reset_keys(actions)
 
 
 if __name__ == "__main__":
