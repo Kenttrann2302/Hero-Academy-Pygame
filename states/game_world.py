@@ -2,6 +2,7 @@ import pygame
 import os
 from states.state import State
 from states.pause_menu import PauseMenu
+from camera import *
 
 # create the game world
 class Game_World(State):
@@ -81,6 +82,15 @@ class Player():
         # set the default frames to facing front
         self.curr_image = self.front_sprites[0]
         self.curr_anim_list = self.front_sprites
+        
+        # Load the camera that follow the player
+        player = Player()
+        camera = Camera(player)
+        follow = Follow(camera, player)
+        border = Border(camera, player)
+        auto = Auto(camera, player)
+        camera.set_method(follow)
+        
 
 
 
